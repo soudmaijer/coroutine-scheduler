@@ -35,7 +35,12 @@ repositories {
 tasks.withType<KotlinCompile> {
 	kotlinOptions {
 		jvmTarget = "1.8"
-		freeCompilerArgs = listOf("-Xjsr305=strict", "-Xjvm-default=enable")
+		freeCompilerArgs = listOf(
+			"-Xjsr305=strict",
+			"-Xjvm-default=enable",
+			"-Xuse-experimental=kotlinx.coroutines.InternalCoroutinesApi",
+			"-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi"
+		)
 	}
 }
 

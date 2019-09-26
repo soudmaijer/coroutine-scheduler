@@ -16,6 +16,7 @@
 
 package com.sample
 
+import com.sample.tasks.taskConfig
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.springframework.boot.WebApplicationType
 import org.springframework.fu.kofu.application
@@ -23,7 +24,7 @@ import org.springframework.fu.kofu.application
 @ExperimentalCoroutinesApi
 val app = application(WebApplicationType.REACTIVE) {
 	configurationProperties<SampleProperties>(prefix = "sample")
-	enable(dataConfig)
+	enable(taskConfig)
 	enable(webConfig)
 }
 
