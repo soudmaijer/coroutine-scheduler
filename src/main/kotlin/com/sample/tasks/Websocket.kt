@@ -10,16 +10,6 @@ import org.springframework.web.reactive.socket.WebSocketHandler
 import org.springframework.web.reactive.socket.WebSocketMessage
 
 @FlowPreview
-inline fun <A> BroadcastChannel<A>.toWebsocketHandler(crossinline serializer: (a: A) -> String = { it.toString() }) = WebSocketHandler { session ->
-    println("Websocket opened ${session.id}")
-
-    val flow: Flow<WebSocketMessage> = this.openSubscription().consumeAsFlow()
-        .map { session.textMessage(serializer(it)) }
-    val sendingMessages = flow
-        .asFlux()
-    session.send(sendingMessages)
-        .and(session.receive()
-            .doOnNext { println("Websocket ${session.id} received msg $it ") }
-            .then())
-}
-
+inline fun <A> BroadcastChannel<A>.toWebsocketHandler(
+    crossinline serializer: (a: A) -> String = { it.toString() }
+):WebSocketHandler = TODO()

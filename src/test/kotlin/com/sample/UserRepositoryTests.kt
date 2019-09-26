@@ -1,6 +1,7 @@
 package com.sample
 
 import com.sample.user.UserRepository
+import com.sample.user.dataConfig
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.AfterAll

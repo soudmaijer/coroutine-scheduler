@@ -14,10 +14,6 @@ Implement a `TaskScope` with a coroutine scope and that implements a method star
 Implement a `TaskService` that uses `TaskScope` to implements `start`, `tasks` and `stopAll` 
 implement routes for TaskService.
 try it out
-hidden hints:
-- taskscope: either it _has_ a scope that we'll use when launching coroutines, or it _is_ a CoroutineScope by having a coroutinecontext with a Job and a Dispatcher. Use delegation!
-- listing the tasks can be done in two ways: 1. maintain a `Map<String,Job>` or 2. use the children of the job. How do we know the name of the Job then?
-- think about race conditions in updating data
 
 #### Exercise A2
 Send messages to a websocket.
@@ -25,24 +21,12 @@ Implement a webflux [WebsocketHandler](https://github.com/spring-projects/spring
 Use as little of Reactor as possible; we have coroutines after all.
 Look at the provided `WebsocketHandler` called `logReceivedMessageWsHandler`.
 Use http://www.websocket.org/echo.html to listen to your websocket
-
-Hidden hints:
-1. create broadcastchannel as spring managed bean
-2. send "start" msg to it from TaskService
-3. implement the function `BroadcastChannel<String>.toWebsocketHandler(): WebSocketHandler`.
-  hints: the websocketsession.send method takes a reactive streams Producer as an argument
-         you can consume a broadcastchannel as flow. which you can turn into a Flux. 
-         next: implement for BroadcastChannel<A>
-4. register websocket handler. Test with websocket.org
          
 #### Exercise A3
 Coroutines and exception handling.
 
 Change the longrunning suspendable function to now and then throw an exception.
 Change the TaskService so that other tasks keep on running when an exception occurs. Log the exception and publish to the websocket. 
-
-hidden hints:
-    either wrap the launch call in a try catch. Or use a different root Job: SupervisorJob and CoroutineExceptionHandler
          
 #### Exercise A4
 Store the scheduler history to a database using R2DBC. See the `user` package for example code that you can adapt.
