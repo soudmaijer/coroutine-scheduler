@@ -1,4 +1,4 @@
-package com.sample
+package com.sample.user
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.springframework.data.r2dbc.core.DatabaseClient

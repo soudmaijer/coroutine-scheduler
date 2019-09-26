@@ -1,5 +1,6 @@
 package com.sample
 
+import com.sample.user.User
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
