@@ -4,24 +4,38 @@ import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.channels.BroadcastChannel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.sync.Mutex
-import kotlinx.coroutines.sync.withLock
-import org.springframework.beans.factory.DisposableBean
-import java.util.concurrent.CancellationException
-import java.util.concurrent.ConcurrentHashMap
-import java.util.concurrent.atomic.AtomicInteger
 import kotlin.coroutines.coroutineContext
 
-//TODO: class TaskService
+/** TaskService uses TaskScope to implement its methods */
+class TaskService() {
 
-//TODO: class TaskScope
+    suspend fun launchTask(): String {
+        return "task name"
+    }
 
+    fun tasks(): Flow<Task> = TODO()
 
-//TODO: suspend fun longRunning() {
+    suspend fun stopAll():Unit = TODO()
+}
+
+/** TaskScope is able to launch coroutines, keep track of them and cancel them all.
+ * To do that it has a CoroutineScope. (Or alternatively _is_ a CoroutineScope )
+ * Taskscope can only be used once: after canceling it's tasks a new instance needs to be created.
+ */
+class TaskScope() {
+
+    fun launchTask(): String {
+        return "task name"
+    }
+}
 
 suspend fun name(): String? = coroutineContext[CoroutineName]?.name
+
+/** A CoroutineScope needs a dispatcher and a job */
+fun createScope() = CoroutineScope(Dispatchers.Default + Job())
+
+/** our task that is 'doing' some long running work. In our case it just prints every 5 sec and keeps running until */
+suspend fun longRunning() {
+    //TODO
+}
