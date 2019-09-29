@@ -11,7 +11,7 @@ import org.springframework.web.reactive.function.server.renderAndAwait
 @Suppress("UNUSED_PARAMETER")
 class TaskHandler(private val taskService: TaskService){
 	suspend fun tasks(request: ServerRequest) =
-		ok().contentType(MediaType.APPLICATION_JSON).bodyAndAwait<Task>(taskService.tasks())
+		ok().contentType(MediaType.APPLICATION_JSON).bodyAndAwait(taskService.tasks())
 
 	suspend fun tasksView(request: ServerRequest) =
 		ok().renderAndAwait("tasks",mapOf("tasks" to taskService.tasks()))
@@ -21,5 +21,4 @@ class TaskHandler(private val taskService: TaskService){
 
 	suspend fun stopTasks(request: ServerRequest) =
 		ok().bodyValueAndAwait(taskService.stopAll())
-
 }

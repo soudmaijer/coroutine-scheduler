@@ -27,8 +27,8 @@ val webConfig = configuration {
         bean(::routes)
         websockets {
             mapOf(
-                "/ws/pingpong" to logReceivedMessageWsHandler,
-                "ws/task" to ref<BroadcastChannel<String>>().toWebsocketHandler()
+                "/ws/pingpong" to logReceivedMessageWsHandler
+                // TODO: add websocket handler here
             )
         }
     }
