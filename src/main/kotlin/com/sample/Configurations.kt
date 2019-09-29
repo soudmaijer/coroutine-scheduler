@@ -25,11 +25,10 @@ import reactor.core.publisher.Mono
 val webConfig = configuration {
     beans {
         bean(::routes)
-        bean<BroadcastChannel<String>> { BroadcastChannel(1) } // remove
         websockets {
             mapOf(
                 "/ws/pingpong" to logReceivedMessageWsHandler,
-                "ws/task" to ref<BroadcastChannel<String>>().toWebsocketHandler() // remove
+                "ws/task" to ref<BroadcastChannel<String>>().toWebsocketHandler()
             )
         }
     }
